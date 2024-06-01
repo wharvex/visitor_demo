@@ -17,13 +17,14 @@ internal class Program
                 new SimpleName("Dennis", "Ritchie")
             ),
         };
-        Print(publications, new CommonNameFormatter());
-        Print(publications, new AcademicNameFormatter());
+        Print(publications, PersonalNameFormatters.CommonName);
+        Print(publications, PersonalNameFormatters.FullName);
+        Print(publications, PersonalNameFormatters.AcademicName);
     }
 
     private static void Print(
         IEnumerable<Publication> publications,
-        IPersonalNameVisitor<string> formatter
+        Func<PersonalName, string> formatter
     )
     {
         foreach (var publication in publications)

@@ -17,6 +17,11 @@ public class Publication
             ? Title
             : $"{string.Join(", ", Authors.Select(a => a.Accept(formatter)))}, {Title}";
 
+    public string ToString(Func<PersonalName, string> nameFormatter) =>
+        AuthorsList.Count == 0
+            ? Title
+            : $"{string.Join(", ", Authors.Select(nameFormatter))}, {Title}";
+
     public override string ToString() =>
         AuthorsList.Count == 0 ? Title : $"{Title} by {string.Join(", ", Authors)}";
 }
